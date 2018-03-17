@@ -1,0 +1,57 @@
+  <section class="h-90" *ngIf="!isSearch">
+      <header class="container h-100">
+        <div class="d-flex align-items-center justify-content-center h-100">
+          <div class=" flex-column text-center block1">
+            <h1 class="text align-self-center p-2">Find your artist below</h1>
+
+            <button class=" align-self-center" class="artist" type="button" name="button" (click)="open()">Search Artist</button>
+          </div>
+        </div>
+      </header>
+    </section>
+ <!-- product view modal start -->
+ <div class="modal fade pdp" appModal id="exampleModal" *ngIf="isOpen" [ngClass]="{'show d-block': isOpen}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+       <div class="modal-content">
+
+          <div class="modal-header border-0">
+              <h5 class="modal-title">Enter search criteria</h5>
+              <button type="button" class="close" data-dismiss="modal" (click)="closeModal()"  aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          <div class="modal-body pa-3">
+             <div class="row ">
+           <div class="col-sm-12">
+
+              <form [formGroup]="myForm" (ngSubmit)="search(myForm)">
+                  <div class="form-group row">
+                    <label for="Artist" class="col-sm-3 p-r-0 col-form-label">Artist Name</label>
+                    <div class="col-sm-9">
+                      <input type="text"  class="form-control" id="Artist"  placeholder="Artist" formControlName="artist" required>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="tracks" class="col-sm-3 p-r-0 col-form-label">No. of tracks</label>
+                    <div class="col-sm-9">
+                      <input type="number" class="form-control" id="tracks" placeholder="Limit" formControlName="limit" required >
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                      <label for="tracks" class="col-sm-3 p-r-0 col-form-label"></label>
+                      <div class="col-sm-9">
+                       <button class="search" type="submit" [disabled]="!myForm.valid">Search</button>
+                      </div>
+                    </div>
+                </form>
+            </div>
+             </div>
+          </div>
+       </div>
+    </div>
+    </div>
+      <!-- product view modal end -->
+    <div class="modal-backdrop fade show"  *ngIf="isOpen"  ></div>
+
+
+<app-search-grid [searchContent]="searchContent.results" [artistname]="artistname" *ngIf="isSearch"></app-search-grid>

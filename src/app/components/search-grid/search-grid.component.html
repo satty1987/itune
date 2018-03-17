@@ -1,0 +1,28 @@
+<section class="search mt-5">
+  <header class="container ">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="mb-4">Search Result for "{{artistname | uppercase}}".
+          <span class="clear pointer" (click)="clear()">( Clear )</span>
+        </h1>
+
+        <div class="media m-b-50" *ngFor="let item of searchContent">
+          <div class="rounded-image mr-4">
+            <img class="" [src]="item.artworkUrl100" alt="">
+          </div>
+          <div class="media-body border-bottom ">
+            <h6 class="mt-0">
+              <strong>Artist Name :</strong> {{item.artistName}} </h6>
+            <h6 class="mt-0">
+              <strong>Track Name :</strong> {{item.trackName}} </h6>
+<!-- <span (click)="onAudioPlay()">play</span>
+              <audio #audioOption>
+                  <source [src]='item.previewUrl' type="audio/mp4">
+                </audio> -->
+            <p>{{item.shortDescription ? item.shortDescription : item.longDescription}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+</section>
