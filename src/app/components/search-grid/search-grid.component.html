@@ -1,7 +1,14 @@
 <section class="search mt-5">
   <header class="container ">
     <div class="row">
-      <div class="col-md-12">
+        <div class="col-md-12" *ngIf="noResult">
+            <h1 class="mb-4">
+                 {{noResultFound}}
+                <span class="clear pointer" (click)="clear()">( Clear )</span>
+              </h1>
+<div class="text-center "><i class="fa fa-frown-o frown" aria-hidden="true"></i></div>
+        </div>
+      <div class="col-md-12" *ngIf="!noResult">
         <h1 class="mb-4">Search Result for "{{artistname | uppercase}}".
           <span class="clear pointer" (click)="clear()">( Clear )</span>
         </h1>
@@ -15,8 +22,10 @@
               <strong>Artist Name :</strong> {{item.artistName}} </h6>
             <h6 class="mt-0">
               <strong>Track Name :</strong> {{item.trackName}} </h6>
+              <h6 class="mt-0" *ngIf="item.collectionName">
+                  <strong>Collection Name :</strong> {{item.collectionName}} </h6>
 <!-- <span (click)="onAudioPlay()">play</span>
-              <audio #audioOption>
+              <audio #audioOption> collectionName
                   <source [src]='item.previewUrl' type="audio/mp4">
                 </audio> -->
             <p>{{item.shortDescription ? item.shortDescription : item.longDescription}}</p>

@@ -6,8 +6,10 @@ import { SearchService } from '../../services/search.service';
   styleUrls: ['./search-grid.component.css']
 })
 export class SearchGridComponent implements OnInit {
-  @Input() searchContent = {} ;
+  @Input() searchContent: any ;
   @Input() artistname;
+  @Input() noResult: Boolean;
+  noResultFound = 'Sorry No Result Found. Please Try Again';
   @ViewChild('audioOption') audioPlayerRef: ElementRef;
   constructor(public searchService: SearchService) {}
 

@@ -12,8 +12,10 @@ export class SearchComponent implements OnInit {
   public searchContent: any = {};
 public isSearch: Boolean = false;
 public artistname ;
+public isloading = false;
 myForm: FormGroup;
-
+errorMessage: String;
+noResult = false;
 constructor(public searchService: SearchService) {
 
   }
@@ -31,19 +33,25 @@ constructor(public searchService: SearchService) {
   public open() {
   this.isOpen = true;
   this.myForm = new FormGroup({
-    artist: new FormControl('', Validators.required),
+    term: new FormControl('', Validators.required),
     limit: new FormControl('', Validators.required)
   });
   }
   search(dataItem) {
-    console.log(dataItem);
+    this.isloading = true;
     this.searchService.getSearchData( dataItem.value).subscribe((res) => {
 
      this.searchContent = res;
-    this.artistname = dataItem.value.artist;
+     this.artistname = dataItem.value.term;
       this.isOpen = false;
       this.isSearch = true;
-    } );
+      this.isloading = false;
+      this.noResult = false;
+      if ( res.resultCount === 0 ) {
+        this.noResult = true;
+      }
+    },
+    error =>  this.errorMessage = <any>error);
   }
 
 }

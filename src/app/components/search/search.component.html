@@ -28,7 +28,7 @@
                   <div class="form-group row">
                     <label for="Artist" class="col-sm-3 p-r-0 col-form-label">Artist Name</label>
                     <div class="col-sm-9">
-                      <input type="text"  class="form-control" id="Artist"  placeholder="Artist" formControlName="artist" required>
+                      <input type="text"  class="form-control" id="Artist"  placeholder="Artist" formControlName="term" required>
                     </div>
                   </div>
                   <div class="form-group row">
@@ -40,7 +40,7 @@
                   <div class="form-group row">
                       <label for="tracks" class="col-sm-3 p-r-0 col-form-label"></label>
                       <div class="col-sm-9">
-                       <button class="search" type="submit" [disabled]="!myForm.valid">Search</button>
+                       <button class="search" type="submit" [disabled]="!myForm.valid">Search  <i class="fa fa-spinner fa-spin" *ngIf="isloading" ></i></button>
                       </div>
                     </div>
                 </form>
@@ -54,4 +54,4 @@
     <div class="modal-backdrop fade show"  *ngIf="isOpen"  ></div>
 
 
-<app-search-grid [searchContent]="searchContent.results" [artistname]="artistname" *ngIf="isSearch"></app-search-grid>
+<app-search-grid [searchContent]="searchContent.results" [artistname]="artistname" *ngIf="isSearch" [noResult]="noResult"></app-search-grid>
