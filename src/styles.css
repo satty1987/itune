@@ -67,6 +67,15 @@ font-family: "junglee medium";
   z-index: -1;
 
 }
+
+@media only screen and (max-width:480px){
+  .block1:before{
+display: none;
+  }
+}
 .block1{
 position:relative;
+}
+*{
+  transition: all 5s ease-in-out;
 }
